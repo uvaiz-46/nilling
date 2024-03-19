@@ -1,0 +1,153 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Cash Billing</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;  
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgb(243, 237, 237);
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .guf img {
+            width: 100%;
+            height: auto;
+            max-width: 100%;
+            max-height: 400px; /* Adjust this value as needed */
+        }
+
+        .paisa {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #3a3b3c;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 18px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #vall {
+            font-size: 16px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        @media only screen and (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+        @media screen and (max-width: 768px) {
+
+            body{
+                background: url("https://media1.giphy.com/media/3o6UBbYR3t0coIdKRq/200w.gif?cid=6c09b952q5cw08phq5sgi28isedrftyn00arwovrrg8p9jap&ep=v1_gifs_search&rid=200w.gif&ct=g");
+            }
+            .container {
+                display: flex;
+    flex-direction: column-reverse;
+            }
+            .guf img{
+            display: none;
+            }
+
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="guf">
+            <img src="https://cdn.dribbble.com/users/2842511/screenshots/6703893/800px.gif" alt="">
+        </div>
+
+        <div class="paisa">
+            <h1>Cash Billing System</h1>
+            <label for="amount">Product amount:</label>
+            <input type="number" id="amount" name="amount">
+            <label for="paid">Given cash:</label>
+            <input type="number" id="paid" name="amount">
+            <button onclick="check()">Balance Check</button>
+            <div id="vall"></div>
+        </div>
+
+    </div>
+    <script>
+        function check() {
+            const amt = parseFloat(document.getElementById("amount").value);
+            const paidAmt = parseFloat(document.getElementById("paid").value);
+
+            const res = paidAmt - amt;
+            if (isNaN(amt) || isNaN(paidAmt)) {
+                alert('Please enter valid numbers');
+                return false;
+            } else if (res <  0) {
+                document.getElementById("vall").innerHTML = "Amount is insufficient.";
+            } else {
+                document.getElementById("vall").innerHTML = `Balance amount is: ₹ ${(res.toFixed(2))}`;
+            }
+        }
+    </script>
+</body>
+
+</html>
